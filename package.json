@@ -18,6 +18,9 @@
   ],
   "author": "linxi <mcnjqe@gmail.com>",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
