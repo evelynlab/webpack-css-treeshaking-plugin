@@ -7,7 +7,7 @@ class CSSTreeShakingPlugin {
   }
 
   apply (compiler) {
-    compiler.plugin('after-emit', (compilation, callback) => {
+    compiler.hooks.emit.tapAsync('CSSTreeShakingPlugin', (compilation, callback) => {
       let styleFiles = Object.keys(compilation.assets).filter(asset => {
         return /\.css$/.test(asset)
       })
