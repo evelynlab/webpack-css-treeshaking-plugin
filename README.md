@@ -41,10 +41,11 @@ module.exports = {
 ## configuration
  
 
-property | type | default | discription
+property | type | default | description
 -------- | ---- | ------- | -----------
 remove | boolean | false | whether to remove unused css
 ignore | array | [] | items can be a string or a regexp
+output | string | -- | output shaked css into file path
 
 
 ## architechture
