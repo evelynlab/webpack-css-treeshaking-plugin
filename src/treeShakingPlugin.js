@@ -1,5 +1,6 @@
 var postcss = require('postcss')
 var parser = require('postcss-selector-parser')
+var fs = require('fs')
 var _ = require('lodash')
 
 const classInJSRegex = (className) => {
@@ -89,6 +90,10 @@ module.exports = postcss.plugin('list-selectors', function (options) {
       })
     }
 
+    if (config.output) {
+      fs.writeFileSync(config.output, '')
+    }
+
     let start = Date.now()
     cssRoot.walkRules(function (rule) {
       // Ignore keyframes, which can log e.g. 10%, 20% as selectors
@@ -97,6 +102,9 @@ module.exports = postcss.plugin('list-selectors', function (options) {
         if (result.selectors.length === 0) {
           let log = ' ✂️ [' + rule.selector + '] shaked, [1]'
           console.log(log)
+          if (config.output) {
+            fs.appendFileSync(config.output, log+'\n', 'utf8')
+          }
           if (config.remove) {
             rule.remove()
           }
@@ -107,6 +115,9 @@ module.exports = postcss.plugin('list-selectors', function (options) {
           if (shaked && shaked.length > 0) {
             let log = ' ✂️ [' + shaked.join(' ') + '] shaked, [2]'
             console.log(log)
+            if (config.output) {
+              fs.appendFileSync(config.output, log+'\n', 'utf8')
+            }
           }
           if (config.remove) {
             rule.selectors = result.selectors
