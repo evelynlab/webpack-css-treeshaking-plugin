@@ -1,6 +1,6 @@
 {
   "name": "@evelynlab/webpack-css-treeshaking-plugin",
-  "version": "1.1.28",
+  "version": "1.1.29",
   "description": "a webpack loader to shake unused css code.",
   "repository": {
     "type": "git",
